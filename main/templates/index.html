@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1" />
+		<title>Fahasa : Home</title>
+		<link
+			rel="shortcut icon"
+			type="image/icon"
+			href="{{ url_for('static', filename='images/favicon.ico')}}" />
+		<link
+			href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+			rel="stylesheet" />
+		<link
+			href="{{ url_for('static', filename='css/bootstrap.min.css')}}"
+			rel="stylesheet" />
+		<link
+			href="{{ url_for('static', filename='css/slick.css')}}"
+			rel="stylesheet" />
+		<link
+			id="switcher"
+			href="{{ url_for('static', filename='css/theme-color/default-theme.css')}}"
+			rel="stylesheet" />
+		<link
+			href="{{ url_for('static', filename='css/style.css')}}"
+			rel="stylesheet" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800"
+			rel="stylesheet" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Lato"
+			rel="stylesheet" />
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	</head>
+
+	<body>
+		<header
+			id="mu-header"
+			class=""
+			role="banner">
+			<div class="container">
+				<nav class="navbar navbar-default mu-navbar">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button
+								type="button"
+								class="navbar-toggle collapsed"
+								data-toggle="collapse"
+								data-target="#bs-example-navbar-collapse-1"
+								aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a
+								class="navbar-brand"
+								href=""
+								><i
+									class="fa fa-book"
+									aria-hidden="true"></i>
+								Fahasa</a
+							>
+						</div>
+						<div
+							class="collapse navbar-collapse"
+							id="bs-example-navbar-collapse-1"></div>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<section id="mu-hero">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-sm-6 col-sm-push-6">
+						<div class="mu-hero-right">
+							<img
+								src="{{ url_for('static', filename='/images/dacnhantam.jpg')}}"
+								alt="Ebook img" />
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-sm-pull-6">
+						<div class="mu-hero-left">
+							<h1>Học hỏi, trải nghiệm và phát triển bản thân với Fahasa</h1>
+
+							<form id="search-form">
+								<input
+									type="text"
+									id="search-input"
+									placeholder="Nhập từ khóa" />
+								<button type="submit">Tìm kiếm</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<main role="main">
+			<section id="mu-video-review">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="mu-video-review-area">
+								<div class="mu-heading-area">
+									<h2 class="mu-heading-title">Check Out Our Video Review</h2>
+									<span class="mu-header-dot"></span>
+									<p>
+										Lorem Ipsum is simply dummy text of the printing and
+										typesetting industry. Lorem Ipsum has been the industry
+										standard dummy text ever
+									</p>
+								</div>
+								<div class="mu-video-review-content">
+									<iframe
+										class="mu-video-iframe"
+										width="100%"
+										height="480"
+										src="https://www.youtube.com/embed/T4ySAlBt2Ug"
+										frameborder="0"
+										allowfullscreen></iframe>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer
+			id="mu-footer"
+			role="contentinfo">
+			<div class="container">
+				<div class="mu-footer-area">
+					<div class="mu-social-media">
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-google-plus"></i></a>
+						<a href="#"><i class="fa fa-linkedin"></i></a>
+					</div>
+					<p class="mu-copyright">
+						&copy; Copyright
+						<a
+							rel="nofollow"
+							href="http://markups.io"
+							>ChichChoeBong</a
+						>. All right reserved.
+					</p>
+				</div>
+			</div>
+		</footer>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="{{ url_for('static', filename='/js/bootstrap.min.js')}}"></script>
+		<script
+			type="text/javascript"
+			src="{{ url_for('static', filename='/js/slick.min.js')}}"></script>
+		<script
+			type="text/javascript"
+			src="{{ url_for('static', filename='/js/counter.js')}}"></script>
+		<script
+			type="text/javascript"
+			src="{{ url_for('static', filename='/js/app.js')}}"></script>
+		<script
+			type="text/javascript"
+			src="{{ url_for('static', filename='/js/custom.js')}}"></script>
+
+		<script>
+			const form = document.querySelector('#search-form');
+			const input = document.querySelector('#search-input');
+
+			form.addEventListener('submit', (e) => {
+				e.preventDefault();
+				const name = input.value.trim(); // Lấy giá trị từ ô tìm kiếm và xóa khoảng trắng đầu cuối
+				const url = `/search?q=${name}`; // Tạo URL với tham số tìm kiếm
+
+				window.location.href = url; // Chuyển đến trang kết quả tìm kiếm
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: ./mysql/Dockerfile
+    restart: always
+    environment:
+      MYSQL_DATABASE: fahasadb
+      MYSQL_USER: fahasa
+      MYSQL_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - '6603:3306'
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
+
+  mysql_api:
+    build:
+      context: .
+      dockerfile: ./mysql_api/Dockerfile
+    restart: always
+    ports:
+      - '5555:5555'
+    depends_on:
+      - mysql
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.6
+    environment:
+      DOCKER_CONTAINER: True
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16

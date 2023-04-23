@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fahasa : Home</title>
+    <link rel="shortcut icon" type="image/icon" href="{{ url_for('static', filename='images/favicon.ico')}}" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/slick.css')}}" rel="stylesheet">
+    <link id="switcher" href="{{ url_for('static', filename='css/theme-color/default-theme.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header id="mu-header" class="" role="banner">
+        <div class="container">
+            <nav class="navbar navbar-default mu-navbar">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href=""><i class="fa fa-book" aria-hidden="true"></i> Fahasa</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <section id="mu-hero">
+        <div class="container">
+            <div class="row">
+                <h2 class="text-center text-white ">Kết Quả Tìm Kiếm</h2>
+                <div class="table-responsive" >
+                    <table class="table table-striped table-bordered" id="product-list">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID Product</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">URL</th>
+                                <th scope="col">Image</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <footer id="mu-footer" role="contentinfo">
+        <div class="container">
+            <div class="mu-footer-area">
+                <div class="mu-social-media">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+                <p class="mu-copyright">&copy; Copyright <a rel="nofollow" href="http://markups.io">markups.io</a>. All
+                    right reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='/js/slick.min.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='/js/counter.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='/js/app.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='/js/custom.js')}}"></script>
+
+    <script>
+$(document).ready(function() {
+    const searchParams = new URLSearchParams(window.location.search); // Lấy tham số từ URL
+    const query = searchParams.get('q'); // Lấy giá trị của tham số 'q'
+    $.ajax({
+        url: 'http://192.168.1.15:8000/products/',
+        crossDomain: true,
+        dataType: 'jsonp',
+        data: { q: query }, // Truyền giá trị của 'q' vào data
+        success: function(data) {
+            if (data.length > 0) {
+                var productList = [];
+                for (var i = 0; i < data.length; i++) {
+                    var product = data[i];
+                    productList += "<tr>" +
+                            "<td>" + product.id + "</td>" +
+                            "<td>" + product.product_name + "</td>" +
+                            "<td>" + product.product_price + "</td>" +
+                            "<td>" + product.product_url + "</td>" +
+                            "<td>" + product.image_src + "</td>" +
+                        "</tr>";
+                }
+                $('#product-list tbody').html(productList);
+            } else {
+                alert('No results found');
+            }
+        },
+        error: function() {
+            alert('Error occurred while searching');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
