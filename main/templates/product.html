@@ -88,10 +88,9 @@ $(document).ready(function() {
     const searchParams = new URLSearchParams(window.location.search); // Lấy tham số từ URL
     const query = searchParams.get('q'); // Lấy giá trị của tham số 'q'
     $.ajax({
-        url: 'http://192.168.1.15:8000/products/',
+        url: 'http://127.0.0.1:5555/products/',
         crossDomain: true,
         dataType: 'jsonp',
-        data: { q: query }, // Truyền giá trị của 'q' vào data
         success: function(data) {
             if (data.length > 0) {
                 var productList = [];

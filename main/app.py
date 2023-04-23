@@ -4,7 +4,7 @@ import requests, json
 app = Flask(__name__)
 CORS(app)
 
-API_URL = 'http://192.168.1.15:8000/'
+API_URL = 'http://127.0.0.1:5555/'
 
 @app.route("/", methods=['GET'])
 def index():
