@@ -19,7 +19,7 @@ def create_category(category: Category):
                     "keywords": category['keywords'],
                     "parent_category": category['parent_category']}
     result = conn.execute(categories.insert().values(new_category))
-    conn.commit()
+    conn.begin()
     return conn.execute(categories.select().where(categories.c.id == result.lastrowid)).first()
 
 def crawl_categories():

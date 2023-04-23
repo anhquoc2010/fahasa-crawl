@@ -36,7 +36,7 @@ def create_product(product: Product):
                    "translator": product["translator"] if "translator" in product else "",
                    "category_id": product["category_id"]}
     result = conn.execute(products.insert().values(new_product))
-    conn.commit()
+    conn.begin()
     return conn.execute(products.select().where(products.c.id == result.lastrowid)).first()
 
 def get_products():
