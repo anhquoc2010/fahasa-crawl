@@ -88,7 +88,7 @@ $(document).ready(function() {
     const searchParams = new URLSearchParams(window.location.search); // Lấy tham số từ URL
     const query = searchParams.get('q'); // Lấy giá trị của tham số 'q'
     $.ajax({
-        url: 'http://127.0.0.1:5555/products/',
+        url: '/products',
         crossDomain: true,
         dataType: 'jsonp',
         success: function(data) {
@@ -109,8 +109,8 @@ $(document).ready(function() {
                 alert('No results found');
             }
         },
-        error: function() {
-            alert('Error occurred while searching');
+        error: function(e) {
+            console.log(e.message);
         }
     });
 });
