@@ -19,7 +19,7 @@ numpy==1.24.2
 pandas==2.0.0
 protobuf==3.20.3
 psycopg2-binary==2.9.1
-pydantic==1.10.7
+pydantic==1.10.13
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.0
 pytz==2023.3
